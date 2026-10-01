@@ -1,4 +1,4 @@
-const FPS = 30
+const FPS = 60
 
 function getPlayerData() {
     let s = {
@@ -201,8 +201,8 @@ function loadGame(start=true, gotNaN=false) {
 
         setInterval(save,60000)
         for (let x = 0; x < 50; x++) updateTemp();
-        setInterval(loop, 1000/FPS)
-        setInterval(checkNaN,1000)
+        setInterval(loop, 1/FPS)
+        setInterval(checkNaN,1)
         loadVue()
         loop()
         document.getElementById("app").style.display = ""

@@ -8,7 +8,7 @@ const CURRENCIES = {
         get gain() {
             let x = tmp.global_mult
 
-            x = x.mul(upgradeEffect('stone\\1')).mul(simpleUpgradeEffect('t_stone\\3')).mul(tmp.gold_effect).mul(tmp.pickaxe_tier_effect)
+            x = x.mul(upgradeEffect('stone\\1')).mul(simpleUpgradeEffect('t_stone\\3')).mul(tmp.gold_effect).mul(tmp.pickaxe_tier_effect).mul(simpleUpgradeEffect('money\\5'))
 
             return x
         },
@@ -43,7 +43,7 @@ const CURRENCIES = {
             if (isModEnabled("easy")) exp += .025;
             if (isModEnabled("hard")) exp -= .05;
 
-            x = expPow(x, exp).mul(tmp.global_mult).mul(simpleUpgradeEffect('gold\\5')).mul(upgradeEffect('gold\\6')).mul(simpleUpgradeBonus('stone\\h3',10))
+            x = expPow(x, exp).mul(tmp.global_mult).mul(simpleUpgradeEffect('gold\\5')).mul(upgradeEffect('gold\\6')).mul(simpleUpgradeBonus('stone\\h3',10)).pow(simpleUpgradeEffect('break\\16'))
 
             return x.max(1).floor()
         },
@@ -70,12 +70,12 @@ const CURRENCIES = {
             if (isModEnabled("easy")) exp += .025;
             if (isModEnabled("hard")) exp -= .05;
 
-            x = expPow(x, exp).mul(1e3).root(3).sub(9).mul(tmp.global_mult).mul(simpleUpgradeEffect('money\\4')).mul(upgradeEffect('break\\6')).mul(simpleUpgradeBonus('gold\\h2',10))
+            x = expPow(x, exp).mul(1e3).root(3).sub(9).mul(tmp.global_mult).mul(simpleUpgradeEffect('money\\4')).mul(upgradeEffect('break\\6')).mul(simpleUpgradeEffect('break\\8')).pow(simpleUpgradeEffect('break\\14')).mul(simpleUpgradeBonus('gold\\h2',10)).mul(upgradeEffect('gold\\9')).mul(upgradeEffect('gold\\13')).mul(upgradeEffect('stone\\9'))
 
             return x.max(1).floor()
         },
 
-        get passive () { return 0 },
+        get passive () { return +tmp.pickaxe_tier.gte(44) },
     },
     money: {
         name: "Money",
@@ -88,7 +88,7 @@ const CURRENCIES = {
 
             let x = tmp.miner_effect.mul(tmp.global_mult)
             
-            x = x.mul(upgradeEffect("money\\3")).mul(upgradeEffect("break\\2")).mul(simpleUpgradeEffect("break\\3")).mul(upgradeEffect("gold\\8")).mul(upgradeEffect("stone\\8")).mul(simpleUpgradeEffect("money\\h1"))
+            x = x.mul(upgradeEffect("money\\3")).mul(upgradeEffect("break\\2")).mul(simpleUpgradeEffect("break\\3")).pow(upgradeEffect("break\\11")).mul(simpleUpgradeEffect("break\\15")).mul(upgradeEffect("gold\\8")).mul(upgradeEffect("gold\\11")).mul(upgradeEffect("stone\\8")).mul(simpleUpgradeEffect("money\\h1"))
 
             return x
         },

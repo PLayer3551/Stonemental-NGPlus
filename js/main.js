@@ -10,20 +10,22 @@ const MAIN = {
         gain() {
             let x = tmp.global_mult
 
-            x = x.mul(upgradeEffect('stone\\3')).mul(upgradeEffect('stone\\4')).mul(upgradeEffect('t_stone\\1')).mul(tmp.gold_effect).mul(tmp.pickaxe_tier_effect)
+            x = x.mul(upgradeEffect('stone\\3')).mul(upgradeEffect('stone\\4')).mul(upgradeEffect('t_stone\\1')).mul(tmp.gold_effect).mul(simpleUpgradeEffect('gold\\12')).mul(tmp.pickaxe_tier_effect).mul(upgradeEffect('break\\13'))
 
             /*
             x = x.mul(upgEffect('t_stone',0)[1])
             x = x.mul(upgEffect('stone',2)[1])
             x = x.mul(upgEffect('stone',3))
             x = x.mul(tmp.goldEffect).mul(tmp.pickEffect)
+            x = x.mul(upgEffect('gold',12))
+            x = x.mul(upgEffect('break',13))
             */
 
             return x
         },
 
         hard() {
-            let t = player.t_stone.tier.sub(upgradeEffect('t_stone\\4',0)).sub(simpleUpgradeEffect('t_stone\\6',0)).sub(simpleUpgradeEffect('stone\\h1',0)).sub(simpleUpgradeEffect('gold\\h1',0))
+            let t = player.t_stone.tier.sub(upgradeEffect('t_stone\\4',0)).sub(simpleUpgradeEffect('t_stone\\6',0)).sub(simpleUpgradeEffect('t_stone\\7',0)).sub(simpleUpgradeEffect('stone\\h1',0)).sub(simpleUpgradeEffect('gold\\h1',0)).sub(simpleUpgradeEffect('stone\\10',0))
 
             let f = upgradeEffect("stone\\h2")
 

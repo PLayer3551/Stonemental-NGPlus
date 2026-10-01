@@ -7,6 +7,14 @@ function updateNewsArray() {
         [()=>`Hello everybody, my name is Markiplier and welcome to Five Nights at Freddy's, an indie horror game that you guys suggested, en masse, and I saw that Yamimash played it and he said it was really really good... So I'm very eager to see what is up. And that is a terrifying animatronic bear! 'Family pizzeria looking for security guard to work the nightshift.' Oh... 12 a.m. The first night. If I didn't wanna stay the first night, why would I stay any more than... five... Why I stay any more than two- hello? Okay...`,Math.random()<1/10,"a5"],
         [()=>"5 hours? more like 5 years",true,"a6"],
         [()=>"I HAVE PLAYED THIS GAME BEFORE!!!!!!!!!!!",true,"a7"],
+        [()=>"<b>Current Endgame NG+:</b> About Reach 1.00^9,450 Stones",Math.random()<1/0.5,"a8"],
+        [()=>"You Unlock Next Prestige Layer 3rd I Need Reach Broken 9.99e999 Cobblestones",true,"a9"],
+        [()=>"IMR v0.7.1.6 NG+ In You Got Reach e3e38,874,561 Mass!        Me?",true,"a10"],
+        [()=>"Epic Lucky Block New Update In Пять Hour / See Russian Me",true,"a11"],
+        [()=>"Steve Slain By Solar System Mob, Bruh That You Planet Mob Enemies Impossible!, 0.000000001% Win Rate",true,"a12"],
+        [()=>"<img src='images/HK_MTR_logo.svg.webp'></img> x <img src='images/minecraft-logo-online-game-dirt-block-illustrations-concept-design-isolated-186775550.webp'></img> Oh no You Enough Mods But... ftrtyyujnbvc we dɛn kin yuz fɔ mek pipul dɛn",true,"a13"],
+        [()=>"Stone-emental NG+ Next Update In 5.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001 Hour / Really Loooong Time",Math.random()<1/2,"a14"],
+        [()=>"You Need Reach Pickaxe's Tier 1,352 To Destory The Command Block",true,"a15"],
 
         [()=>"HOLY COW!! IS THAT A MINECRAFT REFERENCE???",player.t_stone.unl,"b1"],
         [()=>"Eating a Stone in Ancient Greece be like...",player.t_stone.max >= 2,"b2"],
@@ -16,12 +24,18 @@ function updateNewsArray() {
         [()=>"BREAKING THE DIAMOND??? WTFFFFF",player.t_stone.max >= 14,"b6"],
         [()=>"Finally, it made of bedrock...",player.t_stone.max >= 15,"b7"],
         [()=>"Nevermind, bedrock...",player.t_stone.max >= 20,"b8"],
+        [()=>"That Impossible, Super Bedrock...",player.t_stone.max >= 40,"b9"],
 
         [()=>"Gold made in [Au]stralia!",player.gold.unl,"c1"],
         [()=>"Richer than Trillionaire",player.gold.total.gte(1e6),"c2"],
 
         [()=>"I finally took 268,078 years to break the first stone...",player.break.unl,"d1"],
         [()=>"Coems 🤑🤑🤑🤑🤑",player.break.money.gte(1e6),"d2"],
+        [()=>"Money 1e33 Huh? Yes The Give You Reach Googol Money",player.break.money.gte(1e33),"d3"],
+        [()=>"Money 1e100 HUH?! How Did Get This? Fine You Get Reach 1e308 Money! Gold Luck!",player.break.money.gte(1e100),"d4"],
+
+        [()=>"How The Get Stronger Pickaxe Lvl.40?!! How Get This Minecraft Hypixel Skyblock? How Get Fast Level Up Pickaxe? Nah",tmp.pickaxe_tier.gte(40),"e1"],
+        [()=>"You Reached Infinity Stone But So Not Infinity Mass",player.stone.gte(1.797e308),"e2"],
     ]
 }
 

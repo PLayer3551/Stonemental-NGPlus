@@ -212,6 +212,38 @@ const UPGRADES = {
         },
         effDesc: x => formatMult(x),
     },
+    'stone\\9': {
+        unl: () => player.t_stone.max.gte(37),
+        max: 1,
+        name: `Cobblestoneium`,
+
+        get description() { return `Increase your <b>Cobblestone</b> by <b>${formatMult(this.base)}</b> Based on Stone and ${tmp.t_stoneName}.` },
+        cost: ()=>'1e400',
+        curr: "stone",
+
+        get base() { return player.stone.max(1).mul(player.t_stone.max.add(1e100)).root(500) },
+        effect(i) {
+            let x = this.base.pow(i)
+            return x
+        },
+        effDesc: x => formatMult(x),
+    },
+    'stone\\10': {
+        unl: () => player.t_stone.max.gte(40),
+        max: 1,
+        name: `Stupid Softcapped Quarry Tier`,
+
+        get description() { return `Decrease the strength of ${tmp.t_stoneName} is decreased Based on Quarry Tier.` },
+        cost: ()=>'1e430',
+        curr: "stone",
+
+        get base() { return player.t_stone.max.add(1).pow(0.5) },
+        effect(i) {
+            let x = this.base.pow(i)
+            return x
+        },
+        effDesc: x => "/"+format(x,5),
+    },
 
     't_stone\\1': {
         name: `Hard Miner`,
@@ -329,6 +361,21 @@ const UPGRADES = {
         },
         effDesc: x => "-"+format(x,3)+" to Quarry Tier",
     },
+    't_stone\\7': {
+        unl: () => player.t_stone.tier.gte(38),
+        max: 1,
+        name: `Skip To Soft Quarry Tier`,
+
+        get description() { return `The strength of ${tmp.t_stoneName} is decreased By 10.` },
+        cost: ()=>1e45,
+        curr: "t_stone",
+
+        effect(i) {
+            let x = i.mul(10)
+            return x
+        },
+        effDesc: x => "-"+format(x,3)+" to Quarry Tier",
+    },
 
     'gold\\1': {
         max: 1,
@@ -339,7 +386,8 @@ const UPGRADES = {
         curr: "gold",
     },
     'gold\\2': {
-        max: 15,
+        get max() { return Decimal.add(15,upgradeEffect("gold\\10",0)) },
+
         name: `Better Golden Effect`,
 
         get description() { return `Improve the effect of Golden Stone.` },
@@ -394,7 +442,7 @@ const UPGRADES = {
         curr: "gold",
     },
     'gold\\4': {
-        max: 10,
+        get max() { return Decimal.add(10,upgradeEffect("break\\17",0)) },
         name: `Fast Quarry`,
 
         get description() { return `The requirement of Quarry Tier is decreased by <b>5%</b> compounding per level.` },
@@ -444,6 +492,7 @@ const UPGRADES = {
         curr: "gold",
 
         get base() { return Decimal.add(2, 0) },
+        get strength() { return simpleUpgradeBonus("break\\9",1.5) },
         effect(i) {
             let x = this.base.pow(i)
             return x
@@ -488,6 +537,112 @@ const UPGRADES = {
         curr: "gold",
 
         get base() { return player.gold.total.add(10).log10().log10().add(1) },
+        effect(i) {
+            let x = this.base.pow(i)
+            return x
+        },
+        effDesc: x => formatMult(x),
+    },
+    'gold\\9': {
+        unl: () => tmp.pickaxe_tier.gte(30),
+        max: 50,
+        name: `Give More Gold = Get More Cobblestone`,
+
+        get description() { return `Increase Cobblestone by <b>${formatMult(this.base)}</b> per level.` },
+        cost(i) {
+            let x = Decimal.pow(1.2,i.sumBase(1.02)).mul(1e33)
+            return x
+        },
+        bulk(i) {
+            let x = i.div(1e33).max(1).log(1.2).sumBase(1.02,true)
+            return x.add(1).floor()
+        },
+        curr: "gold",
+
+        get base() { return Decimal.add(1.1, 0) },
+        effect(i) {
+            let x = this.base.pow(i)
+            return x
+        },
+        effDesc: x => formatMult(x),
+    },
+    'gold\\10': {
+        unl: () => tmp.pickaxe_tier.gte(30),
+        max: 20,
+        name: `Better Golden Effect Cap`,
+
+        get description() { return `Raise <b>Better Golden Effect</b>'s cap by <b>+2</b> per level.` },
+        cost(i) {
+            let x = Decimal.pow(10,i.sumBase(1.00001)).mul(1e36)
+            return x
+        },
+        bulk(i) {
+            let x = i.div(1e36).max(1).log(10).sumBase(1.00001,true)
+            return x.add(1).floor()
+        },
+        curr: "gold",
+
+        effect(i) {
+            let x = i.mul(2)
+            return x
+        },
+        effDesc: x => "+"+format(x,0),
+    },
+    'gold\\11': {
+        unl: () => tmp.pickaxe_tier.gte(30),
+        max: 4,
+        name: `More Worth Gold`,
+
+        get description() { return `Increase your <b>income</b> by <b>${formatMult(this.base)}</b> per level, based on total golden stone [Super].` },
+        cost(i) {
+            let x = Decimal.pow(100,i.sumBase(1.01).pow(1.75)).mul(1e49)
+            return x
+        },
+        bulk(i) {
+            let x = i.div(1e49).max(1).log(100).root(1.75).sumBase(1.01,true)
+            return x.add(1).floor()
+        },
+        curr: "gold",
+
+        get base() { return player.gold.total.add(10).log(1.5).pow(1.5) },
+        effect(i) {
+            let x = this.base.pow(i)
+            return x
+        },
+        effDesc: x => formatMult(x),
+    },
+    'gold\\12': {
+        unl: () => tmp.pickaxe_tier.gte(30),
+        max: 1,
+        name: `Golden Quarry`,
+
+        get description() { return `Increase ${tmp.t_stoneName} gain by <b>Googol</b>.` },
+        cost: ()=>1e54,
+        curr: "gold",
+
+        effect(i) {
+            let x = E(1).add(i.mul(1e100))
+            return x
+        },
+        effDesc: x => formatMult(x),
+    },
+    'gold\\13': {
+        unl: () => tmp.pickaxe_tier.gte(30),
+        max: 10,
+        name: `Worth Cobblestone`,
+
+        get description() { return `Increase your <b>cobblestone</b> by <b>${formatMult(this.base)}</b> per level, based on total golden stone.` },
+        cost(i) {
+            let x = Decimal.pow(10,i.sumBase(2)).mul(1e70)
+            return x
+        },
+        bulk(i) {
+            let x = i.div(1e70).max(1).log(10).sumBase(2,true)
+            return x.add(1).floor()
+        },
+        curr: "gold",
+
+        get base() { return player.gold.total.add(10).log10().log10().add(1).pow(2) },
         effect(i) {
             let x = this.base.pow(i)
             return x
